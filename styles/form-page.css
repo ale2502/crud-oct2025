@@ -1,0 +1,13 @@
+.text-inputs {
+  width: 200px;
+}
+
+.all-inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropdown-style {
+  width: 208px;
+}

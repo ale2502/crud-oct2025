@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User registration</title>
+  <link rel="stylesheet" href="../styles/form-page.css">
+</head>
+<body>
+  <h3>Fill out the form below</h3>
+  <form>
+    <div class="all-inputs-container">
+      <div class="first-name-container">
+        <label>First name:</label><br>
+        <input class="text-inputs" type="text" id="fname" name="fname" required>
+      </div>
+      <div class="last-name-container">
+        <label>Last name:</label><br>
+        <input class="text-inputs" type="text" id="lname" name="lname" required>
+      </div>
+      <div class="email-container">
+        <label>Email:</label><br>
+        <input class="text-inputs" type="email" id="email" name="email" required>
+      </div>
+      <div class="gender-dropdown-container">
+        <label for="gender">Gender:</label><br>
+        <select class="dropdown-style" id="gender" name="gender" required>
+          <option value="" disabled selected>Select your gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="none">I'd prefer not say</option>
+        </select>
+      </div>
+      <div class="contry-dropdown-container">
+        <label>Select your country:</label><br>
+        <select class="dropdown-style" id="nationality">
+          <option value="" disabled selected></option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <script type="module" src="./scripts/countries.js"></script>
+</body>
+</html>
