@@ -6,7 +6,7 @@
 </head>
 <body>
   <h3>Fill out the form below</h3>
-  <form>
+  <form id="form1">
     <div class="all-inputs-container">
       <div class="first-name-container">
         <label>First name:</label><br>
@@ -18,7 +18,7 @@
       </div>
       <div class="dob-container">
         <label>Date of birth</label><br>
-        <input type="date">
+        <input type="date" required>
       </div>
       <div class="email-container">
         <label>Email:</label><br>
@@ -35,12 +35,16 @@
       </div>
       <div class="contry-dropdown-container">
         <label>Select your country:</label><br>
-        <select class="dropdown-style" id="nationality">
+        <select class="dropdown-style" id="nationality" required>
           <option value="" disabled selected></option>
         </select>
+      </div>
+      <div>
+        <button type="submit">Submit</button>
       </div>
     </div>
   </form>
   <script type="module" src="./scripts/countries.js"></script>
+  <script type="module" src="./scripts/form-page.js"></script>
 </body>
 </html>
