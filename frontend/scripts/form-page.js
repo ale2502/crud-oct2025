@@ -37,13 +37,13 @@ function renderUserInfo() {
 
   userInformation.forEach((user, index) => {
     content += `
-      <div>
-        Name: ${user.firstName}<br>
-        Last name: ${user.lastName}<br>
-        Date of birth: ${user.dateOfBirth}<br>
-        Email: ${user.email}<br>
-        Gender: ${user.gender}<br>
-        Country: ${user.country}<br>
+      <div class="table-header">
+        <div class="col-fname">${user.firstName}</div>
+        <div class="col-lname">${user.lastName}</div>
+        <div class="col-dob">${user.dateOfBirth}</div>
+        <div class="col-email">${user.email}</div>
+        <div class="col-gender">${user.gender}</div>
+        <div class="col-country">${user.country}</div>
         <button>Update</button>
         <button>Delete</button>
       </div>
