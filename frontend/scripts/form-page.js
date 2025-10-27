@@ -44,8 +44,12 @@ function renderUserInfo() {
         <div class="col-email">${user.email}</div>
         <div class="col-gender">${user.gender}</div>
         <div class="col-country">${user.country}</div>
-        <button>Update</button>
-        <button>Delete</button>
+        <div class="button-update-container">
+          <button>Update</button>
+        </div>
+        <div class"button-delete-container">
+          <button>Delete</button>
+        </div>
       </div>
     `;
   });

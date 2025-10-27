@@ -15,11 +15,14 @@
 .table-header {
   display: flex;
   justify-content: start;
+  margin-bottom: 5px;
 }
 
 .col-fname { width: 150px; }
 .col-lname { width: 250px; }
-.col-dob { width: 110px; background-color: aqua;}
+.col-dob { width: 110px; }
 .col-email { width: 250px; }
 .col-gender { width: 200px; }
 .col-country { width: 200px; }
+.button-update-container { width: 70px; }
+.button-delete-container { width: 70px; }
