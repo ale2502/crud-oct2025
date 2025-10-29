@@ -25,6 +25,7 @@ form.addEventListener('submit', (e) => {
   userInformation.push(newUser);
   localStorage.setItem('userInformation', JSON.stringify(userInformation));
   console.log(userInformation);
+  renderUserInfo();
 });
 
 function renderUserInfo() {
