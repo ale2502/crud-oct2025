@@ -45,17 +45,29 @@ function renderUserInfo() {
         <div class="col-email">${user.email}</div>
         <div class="col-gender">${user.gender}</div>
         <div class="col-country">${user.country}</div>
-        <div class="button-update-container">
-          <button>Update</button>
-        </div>
-        <div class"button-delete-container">
-          <button>Delete</button>
+        <div class="buttons">
+          <button class="update-button" data-index="${index}">Update</button>
+          <button class="delete-button" data-index="${index}">Delete</button>
         </div>
       </div>
     `;
   });
   const tableContainer = document.getElementById('table');
   tableContainer.innerHTML = content;
+
+  const allDeleteButtons = document.querySelectorAll('.delete-button');
+
+  allDeleteButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      const index = e.target.getAttribute('data-index');
+      const userInformation = JSON.parse(localStorage.getItem('userInformation'));
+      userInformation.splice(index, 1);
+      localStorage.setItem('userInformation', JSON.stringify(userInformation));
+      renderUserInfo();
+    });
+  });
 }
 
 renderUserInfo();
+
+

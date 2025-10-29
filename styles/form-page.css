@@ -16,6 +16,18 @@
   display: flex;
   justify-content: start;
   margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+#table-header {
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
 }
 
 .col-fname { width: 150px; }
