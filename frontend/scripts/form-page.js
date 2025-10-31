@@ -66,6 +66,22 @@ function renderUserInfo() {
       renderUserInfo();
     });
   });
+
+  const allUpdateButtons = document.querySelectorAll('.update-button');
+
+  allUpdateButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      const index = e.target.getAttribute('data-index');
+      const userInformation = JSON.parse(localStorage.getItem('userInformation'));
+
+      userFirstName.value = userInformation[index].firstName;
+      userLastName.value = userInformation[index].lastName;
+      userDateOfBirth.value = userInformation[index].dateOfBirth;
+      userEmail.value = userInformation[index].email;
+      userGender.value = userInformation[index].gender;
+      userCountry.value = userInformation[index].country;
+    });
+  });
 }
 
 renderUserInfo();
