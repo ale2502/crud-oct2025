@@ -7,6 +7,8 @@ const userEmail = document.getElementById('email');
 const userGender = document.getElementById('gender');
 const userCountry = document.getElementById('nationality');
 
+let editIndex = null;
+
 form.addEventListener('submit', (e) => {
   // Prevents refreshing the page after submitting.
   e.preventDefault();
@@ -22,10 +24,18 @@ form.addEventListener('submit', (e) => {
     country: userCountry.value
   };
 
-  userInformation.push(newUser);
+  if (editIndex !== null) {
+    // Update path: replace the existing record
+    userInformation[editIndex] = newUser;
+  } else {
+    userInformation.push(newUser);
+  }
+
   localStorage.setItem('userInformation', JSON.stringify(userInformation));
-  console.log(userInformation);
   renderUserInfo();
+  form.reset();
+  editIndex = null;
+  if (submitBtn) submitBtn.textContent = 'Submit';
 });
 
 function renderUserInfo() {
@@ -72,7 +82,7 @@ function renderUserInfo() {
   allUpdateButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
-      const userInformation = JSON.parse(localStorage.getItem('userInformation'));
+      const userInformation = JSON.parse(localStorage.getItem('userInformation')) || [];
 
       userFirstName.value = userInformation[index].firstName;
       userLastName.value = userInformation[index].lastName;
@@ -80,10 +90,11 @@ function renderUserInfo() {
       userEmail.value = userInformation[index].email;
       userGender.value = userInformation[index].gender;
       userCountry.value = userInformation[index].country;
+
+      editIndex = index;
+      if (submitBtn) submitBtn.textContent = 'Save changes';
     });
   });
-}
+};
 
 renderUserInfo();
-
-
