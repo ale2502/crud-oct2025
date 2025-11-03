@@ -1,4 +1,5 @@
 const form = document.getElementById('form1');
+const submitBtn = form.querySelector('button[type="submit"]');
 
 const userFirstName = document.getElementById('fname');
 const userLastName = document.getElementById('lname');
