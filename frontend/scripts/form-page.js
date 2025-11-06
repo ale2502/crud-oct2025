@@ -66,6 +66,17 @@ function renderUserInfo() {
   const tableContainer = document.getElementById('table');
   tableContainer.innerHTML = content;
 
+  // Delete all users button logic
+  const deleteAllUsersBtn = document.getElementById('delete-all-btn');
+  if (deleteAllUsersBtn) {
+    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
+    deleteAllUsersBtn.disabled = count === 0;
+  }  
+  
+  deleteAllUsersBtn.addEventListener('click', () => {
+    
+  });
+
   const allDeleteButtons = document.querySelectorAll('.delete-button');
 
   allDeleteButtons.forEach((button) => {

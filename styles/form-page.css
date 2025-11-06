@@ -38,3 +38,7 @@
 .col-country { width: 200px; }
 .button-update-container { width: 70px; }
 .button-delete-container { width: 70px; }
+
+.delete-all-btn {
+  margin-top: 8px;
+}
