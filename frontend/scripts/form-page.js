@@ -8,7 +8,13 @@ const userEmail = document.getElementById('email');
 const userGender = document.getElementById('gender');
 const userCountry = document.getElementById('nationality');
 
+const deleteAllUsersBtn = document.getElementById('delete-all-btn');
+const tableContainer = document.getElementById('table');
+
 let editIndex = null;
+
+const getData = () => JSON.parse(localStorage.getItem('userInformation')) || [];
+const setData = (arr) => localStorage.setItem('userInformation', JSON.stringify(arr));
 
 form.addEventListener('submit', (e) => {
   // Prevents refreshing the page after submitting.
@@ -42,6 +48,13 @@ form.addEventListener('submit', (e) => {
 function renderUserInfo() {
   let content = '';
   
+  // Delete all users button logic
+  const deleteAllUsersBtn = document.getElementById('delete-all-btn');
+  if (deleteAllUsersBtn) {
+    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
+    deleteAllUsersBtn.disabled = count === 0;
+  };
+  
   const userInformation = JSON.parse(localStorage.getItem('userInformation'));
   if (!userInformation) {
     return;
@@ -66,23 +79,19 @@ function renderUserInfo() {
   const tableContainer = document.getElementById('table');
   tableContainer.innerHTML = content;
 
-  // Delete all users button logic
-  const deleteAllUsersBtn = document.getElementById('delete-all-btn');
-  if (deleteAllUsersBtn) {
-    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
-    deleteAllUsersBtn.disabled = count === 0;
-  };
-  
-  deleteAllUsersBtn.addEventListener('click', () => {
-    
-  });
-
   const allDeleteButtons = document.querySelectorAll('.delete-button');
 
   allDeleteButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
       const userInformation = JSON.parse(localStorage.getItem('userInformation'));
+      const user = userInformation[index];
+
+      // Ask for confirmation
+      const ok = confirm(`Are you sure you want to delete user: "${user.firstName} ${user.lastName}"?`);
+      if (!ok) return;
+      
+      // Proceed with deletion
       userInformation.splice(index, 1);
       localStorage.setItem('userInformation', JSON.stringify(userInformation));
       renderUserInfo();
@@ -107,29 +116,29 @@ function renderUserInfo() {
       if (submitBtn) submitBtn.textContent = 'Save changes';
     });
   });
-
-  if (deleteAllUsersBtn) {
-    deleteAllUsersBtn.addEventListener('click', () => {
-      const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
-      if (count === 0) return;
-
-      const ok = confirm(`This will delete all ${count} user(s). Continue?`);
-      if (!ok) return;
-
-      // Clear storage UI
-      localStorage.removeItem('userInformation');
-      const tableContainer = document.getElementById('table');
-      tableContainer.innerHTML = '';
-
-      // Reset editing state/UI
-      editIndex = null;
-      if (submitBtn) submitBtn.textContent = 'Submit';
-      form.rest()
-
-      // Disable the button now that everything is gone
-      deleteAllUsersBtn.disabled = true;
-    });
-  }
 };
 
 renderUserInfo();
+
+if (deleteAllUsersBtn) {
+  deleteAllUsersBtn.addEventListener('click', () => {
+    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
+    if (count === 0) return;
+
+    const ok = confirm(`This will delete all ${count} user(s). Continue?`);
+    if (!ok) return;
+
+    // Clear storage UI
+    localStorage.removeItem('userInformation');
+    const tableContainer = document.getElementById('table');
+    tableContainer.innerHTML = '';
+
+    // Reset editing state/UI
+    editIndex = null;
+    if (submitBtn) submitBtn.textContent = 'Submit';
+    form.reset()
+
+    // Disable the button now that everything is gone
+    deleteAllUsersBtn.disabled = true;
+  });
+}
