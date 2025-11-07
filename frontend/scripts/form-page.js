@@ -71,7 +71,7 @@ function renderUserInfo() {
   if (deleteAllUsersBtn) {
     const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
     deleteAllUsersBtn.disabled = count === 0;
-  }  
+  };
   
   deleteAllUsersBtn.addEventListener('click', () => {
     
@@ -107,6 +107,29 @@ function renderUserInfo() {
       if (submitBtn) submitBtn.textContent = 'Save changes';
     });
   });
+
+  if (deleteAllUsersBtn) {
+    deleteAllUsersBtn.addEventListener('click', () => {
+      const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
+      if (count === 0) return;
+
+      const ok = confirm(`This will delete all ${count} user(s). Continue?`);
+      if (!ok) return;
+
+      // Clear storage UI
+      localStorage.removeItem('userInformation');
+      const tableContainer = document.getElementById('table');
+      tableContainer.innerHTML = '';
+
+      // Reset editing state/UI
+      editIndex = null;
+      if (submitBtn) submitBtn.textContent = 'Submit';
+      form.rest()
+
+      // Disable the button now that everything is gone
+      deleteAllUsersBtn.disabled = true;
+    });
+  }
 };
 
 renderUserInfo();
