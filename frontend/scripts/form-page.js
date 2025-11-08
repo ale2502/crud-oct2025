@@ -20,7 +20,7 @@ form.addEventListener('submit', (e) => {
   // Prevents refreshing the page after submitting.
   e.preventDefault();
   
-  let userInformation = JSON.parse(localStorage.getItem('userInformation')) || [];
+  const data = getData();
 
   const newUser = {
     firstName: userFirstName.value,
@@ -33,12 +33,12 @@ form.addEventListener('submit', (e) => {
 
   if (editIndex !== null) {
     // Update path: replace the existing record
-    userInformation[editIndex] = newUser;
+    data[editIndex] = newUser;
   } else {
-    userInformation.push(newUser);
+    data.push(newUser);
   }
 
-  localStorage.setItem('userInformation', JSON.stringify(userInformation));
+  setData(data);
   renderUserInfo();
   form.reset();
   editIndex = null;
@@ -46,21 +46,19 @@ form.addEventListener('submit', (e) => {
 });
 
 function renderUserInfo() {
+  const data = getData();
   let content = '';
-  
+
   // Delete all users button logic
-  const deleteAllUsersBtn = document.getElementById('delete-all-btn');
   if (deleteAllUsersBtn) {
-    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
-    deleteAllUsersBtn.disabled = count === 0;
+    deleteAllUsersBtn.disabled = data.length === 0;
   };
   
-  const userInformation = JSON.parse(localStorage.getItem('userInformation'));
-  if (!userInformation) {
+  if (!data) {
     return;
   }
 
-  userInformation.forEach((user, index) => {
+  data.forEach((user, index) => {
     content += `
       <div class="table-header">
         <div class="col-fname">${user.firstName}</div>
@@ -76,7 +74,6 @@ function renderUserInfo() {
       </div>
     `;
   });
-  const tableContainer = document.getElementById('table');
   tableContainer.innerHTML = content;
 
   const allDeleteButtons = document.querySelectorAll('.delete-button');
@@ -84,16 +81,16 @@ function renderUserInfo() {
   allDeleteButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
-      const userInformation = JSON.parse(localStorage.getItem('userInformation'));
-      const user = userInformation[index];
+      const data = getData();
+      const user = data[index];
 
       // Ask for confirmation
       const ok = confirm(`Are you sure you want to delete user: "${user.firstName} ${user.lastName}"?`);
       if (!ok) return;
       
       // Proceed with deletion
-      userInformation.splice(index, 1);
-      localStorage.setItem('userInformation', JSON.stringify(userInformation));
+      data.splice(index, 1);
+      setData(data);
       renderUserInfo();
     });
   });
@@ -103,14 +100,14 @@ function renderUserInfo() {
   allUpdateButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-index');
-      const userInformation = JSON.parse(localStorage.getItem('userInformation')) || [];
+      const data = getData();
 
-      userFirstName.value = userInformation[index].firstName;
-      userLastName.value = userInformation[index].lastName;
-      userDateOfBirth.value = userInformation[index].dateOfBirth;
-      userEmail.value = userInformation[index].email;
-      userGender.value = userInformation[index].gender;
-      userCountry.value = userInformation[index].country;
+      userFirstName.value = data[index].firstName;
+      userLastName.value = data[index].lastName;
+      userDateOfBirth.value = data[index].dateOfBirth;
+      userEmail.value = data[index].email;
+      userGender.value = data[index].gender;
+      userCountry.value = data[index].country;
 
       editIndex = index;
       if (submitBtn) submitBtn.textContent = 'Save changes';
@@ -118,11 +115,9 @@ function renderUserInfo() {
   });
 };
 
-renderUserInfo();
-
 if (deleteAllUsersBtn) {
   deleteAllUsersBtn.addEventListener('click', () => {
-    const count = (JSON.parse(localStorage.getItem('userInformation')) || []).length;
+    const count = getData().length;
     if (count === 0) return;
 
     const ok = confirm(`This will delete all ${count} user(s). Continue?`);
@@ -130,7 +125,6 @@ if (deleteAllUsersBtn) {
 
     // Clear storage UI
     localStorage.removeItem('userInformation');
-    const tableContainer = document.getElementById('table');
     tableContainer.innerHTML = '';
 
     // Reset editing state/UI
@@ -142,3 +136,5 @@ if (deleteAllUsersBtn) {
     deleteAllUsersBtn.disabled = true;
   });
 }
+
+renderUserInfo();
