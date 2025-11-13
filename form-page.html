@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <title>User registration</title>
-  <link rel="stylesheet" href="./styles/tw.css" >
-  <link rel="stylesheet" href="../styles/form-page.css">
+  <link rel="stylesheet" href="styles/tw.css" >
+  <link rel="stylesheet" href="styles/form-page.css">
 </head>
-<body class="font-sans bg-slate-50 text-slate-800">
+<body class="font-sans bg-slate-50 text-slate-800 p-4">
   <h3 class="text-xl font-semibold mb-3">Fill out the form below</h3>
   <form id="form1"
-        class="bg-white rounded-xl shadow p-4 max-w-3xl border border-slate-200 ml-3">
+        class="bg-white rounded-xl shadow p-4 max-w-3xl border border-slate-200">
     <div class="all-inputs-container">
       <div class="first-name-container">
         <label class="text-sm text-slate-700">First name:</label><br>
@@ -47,13 +47,17 @@
           <option value="" disabled selected></option>
         </select>
       </div>
-      <div>
-        <button type="submit">Submit</button>
+      <div class="mt-2">
+        <button type="submit" 
+                class="submit-btn rounded-md border border-blue-600 bg-blue-600 text-white px-3 py-3 text-sm hover:bg-blue-700 transition">
+          Submit
+        </button>
       </div>
     </div>
   </form>
-  <button class="delete-all-btn" id="delete-all-btn">Delete all users</button>
-  <div id="table-header" class="table-header">
+  <button class="delete-all-btn border border-red-600 text-red-700 bg-red-50 hover:bg-red-100 rounded-md px-3 py-3 text-sm transition mt-4"      
+          id="delete-all-btn">Delete all users</button>
+  <div id="table-header" class="table-header border-slate-300 font-semibold mt-4 pb-2 text-slate-700">
     <div class="col-fname">First name</div>
     <div class="col-lname">Last name</div>
     <div class="col-dob">Date of birth</div>
@@ -61,7 +65,7 @@
     <div class="col-gender">Gender</div>
     <div class="col-country">Country</div>
   </div>
-  <div id="table" class="table">
+  <div id="table" class="table divide-y divide-slate-200">
   </div>
   <script type="module" src="./frontend/scripts/countries.js"></script>
   <script type="module" src="./frontend/scripts/form-page.js"></script>
