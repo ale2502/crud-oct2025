@@ -67,9 +67,17 @@ function renderUserInfo() {
         <div class="col-email">${user.email}</div>
         <div class="col-gender">${user.gender}</div>
         <div class="col-country">${user.country}</div>
-        <div class="buttons">
-          <button class="update-button" data-index="${index}">Update</button>
-          <button class="delete-button" data-index="${index}">Delete</button>
+        <div class="buttons flex ml-auto gap-2">
+          <button 
+            class="update-button inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-blue-600 text-sm hover:bg-blue-50 transition" 
+            data-index="${index}">
+            Update
+          </button>
+          <button 
+            class="delete-button inline-flex items-center justify-center px-3 py-1.5 rounded-md border border-red-600 text-red-600 text-sm hover:bg-red-50 transition" 
+            data-index="${index}">
+            Delete
+          </button>
         </div>
       </div>
     `;

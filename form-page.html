@@ -48,16 +48,27 @@
         </select>
       </div>
       <div class="mt-2">
-        <button type="submit" 
-                class="submit-btn rounded-md border border-blue-600 bg-blue-600 text-white px-3 py-3 text-sm hover:bg-blue-700 transition">
+        <button id="submit-btn"
+                type="submit"
+                class="inline-flex items-center justify-center rounded-md border border-blue-600 
+                bg-blue-600 px-4 py-2 text-sm font-medium text-white 
+                hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                disabled:opacity-50 disabled:cursor-not-allowed transition"
+        >
           Submit
         </button>
       </div>
     </div>
   </form>
-  <button class="delete-all-btn border border-red-600 text-red-700 bg-red-50 hover:bg-red-100 rounded-md px-3 py-3 text-sm transition mt-4"      
-          id="delete-all-btn">Delete all users</button>
-  <div id="table-header" class="table-header border-slate-300 font-semibold mt-4 pb-2 text-slate-700">
+  <button id="delete-all-btn"
+          class="inline-flex items-center justify-center rounded-md border border-red-600 
+          bg-red-50 px-4 py-2 text-sm font-medium text-red-700 
+          hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 
+          disabled:opacity-50 disabled:cursor-not-allowed transition mt-4"
+  >
+    Delete all users
+  </button>
+  <div id="table-header" class="table-header py-2 border-b border-slate-300 font-semibold text-slate-700 mt-4">
     <div class="col-fname">First name</div>
     <div class="col-lname">Last name</div>
     <div class="col-dob">Date of birth</div>
