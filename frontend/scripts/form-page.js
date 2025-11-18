@@ -60,14 +60,14 @@ function renderUserInfo() {
 
   data.forEach((user, index) => {
     content += `
-      <div class="table-header">
-        <div class="col-fname">${user.firstName}</div>
-        <div class="col-lname">${user.lastName}</div>
-        <div class="col-dob">${user.dateOfBirth}</div>
-        <div class="col-email">${user.email}</div>
-        <div class="col-gender">${user.gender}</div>
-        <div class="col-country">${user.country}</div>
-        <div class="buttons flex ml-auto gap-2">
+      <div class="table-header w-full py-2 items-center">
+        <div class="flex-1 min-w-[120px]">${user.firstName}</div>
+        <div class="flex-1 min-w-[150px]">${user.lastName}</div>
+        <div class="flex-1 min-w-[130px]">${user.dateOfBirth}</div>
+        <div class="flex-1 min-w-[200px]">${user.email}</div>
+        <div class="flex-1 min-w-[140px]">${user.gender}</div>
+        <div class="flex-1 min-w-[150px]">${user.country}</div>
+        <div class="buttons flex gap-2 min-w-[160px] justify-end ml-auto">
           <button 
             class="update-button inline-flex items-center gap-2 justify-center px-3 py-1.5 rounded-md border border-blue-600 text-sm hover:bg-blue-50 transition" 
             data-index="${index}">

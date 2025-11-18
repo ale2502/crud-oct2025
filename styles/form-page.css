@@ -14,19 +14,7 @@
 
 .table-header {
   display: flex;
-  justify-content: start;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
 }
-
-#table-header {
-  border-bottom: 1px solid black;
-  font-weight: 600;
-}
-
-.col-fname { width: 150px; }
-.col-lname { width: 250px; }
-.col-dob { width: 150px; }
-.col-email { width: 300px; }
-.col-gender { width: 200px; }
-.col-country { width: 195px; }
