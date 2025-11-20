@@ -9,7 +9,7 @@ const userGender = document.getElementById('gender');
 const userCountry = document.getElementById('nationality');
 
 const deleteAllUsersBtn = document.getElementById('delete-all-btn');
-const tableContainer = document.getElementById('table');
+const tbody = document.getElementById('table-body');
 
 let editIndex = null;
 
@@ -60,14 +60,15 @@ function renderUserInfo() {
 
   data.forEach((user, index) => {
     content += `
-      <div class="table-header w-full py-2 items-center">
-        <div class="flex-1 min-w-[120px]">${user.firstName}</div>
-        <div class="flex-1 min-w-[150px]">${user.lastName}</div>
-        <div class="flex-1 min-w-[130px]">${user.dateOfBirth}</div>
-        <div class="flex-1 min-w-[200px]">${user.email}</div>
-        <div class="flex-1 min-w-[140px]">${user.gender}</div>
-        <div class="flex-1 min-w-[150px]">${user.country}</div>
-        <div class="buttons flex gap-2 min-w-[160px] justify-end ml-auto">
+      <tr class="border-b border-slate-200">
+        <td class="py-2 px-1">${user.firstName}</td>
+        <td class="py-2 px-1">${user.lastName}</td>
+        <td class="py-2 px-1">${user.dateOfBirth}</td>
+        <td class="py-2 px-1">${user.email}</td>
+        <td class="py-2 px-1">${user.gender}</td>
+        <td class="py-2 px-1">${user.country}</td>
+        
+        <td class="py-2 px-1 text-right">
           <button 
             class="update-button inline-flex items-center gap-2 justify-center px-3 py-1.5 rounded-md border border-blue-600 text-sm hover:bg-blue-50 transition" 
             data-index="${index}">
@@ -76,6 +77,7 @@ function renderUserInfo() {
             </svg>
             Update
           </button>
+
           <button 
             class="delete-button inline-flex items-center gap-2 justify-center px-3 py-1.5 rounded-md border border-red-600 text-red-600 text-sm hover:bg-red-50 transition" 
             data-index="${index}">
@@ -84,11 +86,11 @@ function renderUserInfo() {
             </svg>
             Delete
           </button>
-        </div>
-      </div>
+        </td>
+      </tr>
     `;
   });
-  tableContainer.innerHTML = content;
+  tbody.innerHTML = content;
 
   const allDeleteButtons = document.querySelectorAll('.delete-button');
 
