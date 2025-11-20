@@ -68,7 +68,7 @@ function renderUserInfo() {
         <td class="py-2 px-1">${user.gender}</td>
         <td class="py-2 px-1">${user.country}</td>
         
-        <td class="py-2 px-1 text-right">
+        <td class="py-2 px-1 flex justify-end items-center gap-2">
           <button 
             class="update-button inline-flex items-center gap-2 justify-center px-3 py-1.5 rounded-md border border-blue-600 text-sm hover:bg-blue-50 transition" 
             data-index="${index}">
