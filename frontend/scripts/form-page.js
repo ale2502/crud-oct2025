@@ -16,6 +16,12 @@ let editIndex = null;
 const getData = () => JSON.parse(localStorage.getItem('userInformation')) || [];
 const setData = (arr) => localStorage.setItem('userInformation', JSON.stringify(arr));
 
+const modal = document.getElementById('confirm-modal');
+const modalTitle = document.getElementById('confirm-title');
+const modalMessage = document.getElementById('confirm-message');
+const modalCancel = document.getElementById('cancel-btn');
+const modalConfirm = document.getElementById('confirm-btn');
+
 form.addEventListener('submit', (e) => {
   // Prevents refreshing the page after submitting.
   e.preventDefault();
