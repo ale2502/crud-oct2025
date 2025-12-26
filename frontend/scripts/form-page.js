@@ -163,5 +163,3 @@ if (deleteAllUsersBtn) {
 }
 
 renderUserInfo();
-
-// test
